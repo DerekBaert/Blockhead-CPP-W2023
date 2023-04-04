@@ -18,8 +18,20 @@ protected:
 	virtual void BeginPlay() override;
 	void NextLevel();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly)
 	UBlockHeadGameInstance* GameInstance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG")
+	TSubclassOf<UUserWidget> DefaultLevelCompleteWidget;
+
+	UPROPERTY()
+	UUserWidget* LevelCompleteWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG")
+	TSubclassOf<UUserWidget> DefaultGameCompleteWidget;
+
+	UPROPERTY()
+	UUserWidget* GameCompleteWidget;
 
 	FTimerHandle LevelSwapTimer;
 

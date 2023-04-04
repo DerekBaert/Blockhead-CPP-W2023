@@ -56,10 +56,14 @@ void APlayerCharacter::BeginPlay() {
 	}
 }
 
-void APlayerCharacter::PlayerDied() {
+void APlayerCharacter::PlayerDied()
+{
 	GLUTTON_LOG("Player Died!");
 	bLevelEnded = true;
 	Cube->SetPhysicsLinearVelocity({0, 0, 0});
+
+	GetWorldTimerManager().SetTimer(GameCompleteTimerHandle, [this]() {GameMode->GameCompleted(false); }, 2.0f, false);
+
 }
 
 // Called every frame

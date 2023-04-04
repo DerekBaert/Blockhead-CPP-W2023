@@ -38,6 +38,8 @@ public:
 protected:
 	// ENHANCED INPUT SYSTEM
 
+	FTimerHandle GameCompleteTimerHandle;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputMappingContext* InputMappingContext;
 
