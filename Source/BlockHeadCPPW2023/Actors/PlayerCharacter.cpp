@@ -104,6 +104,11 @@ void APlayerCharacter::MoveRightLeft(const FInputActionValue& Value) {
 	}
 }
 
+void APlayerCharacter::IncrementScore(const int32 PointIncrease)
+{
+	PlayerScore += PointIncrease;
+}
+
 void APlayerCharacter::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,
                              FVector NormalImpulse, const FHitResult& Hit) {
 	if (OtherActor && OtherActor->IsA(AObstacle::StaticClass())) {

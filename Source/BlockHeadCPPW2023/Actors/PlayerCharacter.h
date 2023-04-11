@@ -35,6 +35,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void IncrementScore(const int32 PointIncrease);
+
 protected:
 	// ENHANCED INPUT SYSTEM
 
@@ -68,6 +70,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float KillZThreshold = -300.0f;
+
+	UPROPERTY(EditAnywhere)
+	int32 PlayerScore = 0;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	bool bLevelEnded = false;
