@@ -71,7 +71,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float KillZThreshold = -300.0f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 PlayerScore = 0;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")

@@ -50,7 +50,7 @@ void APlayerCharacter::BeginPlay() {
 	}
 
 	if (Cube) {
-		GLUTTON_LOG("Setting up on component hit event!");
+		//GLUTTON_LOG("Setting up on component hit event!");
 		Cube->OnComponentHit.AddDynamic(this, &APlayerCharacter::OnHit);
 		Cube->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginOverlap);
 	}
@@ -79,6 +79,8 @@ void APlayerCharacter::Tick(float DeltaTime) {
 			PlayerDied();
 		}
 	}
+
+	//GLUTTON_LOG(PRINTF("%d", PlayerScore));
 }
 
 // Called to bind functionality to input
@@ -107,7 +109,7 @@ void APlayerCharacter::MoveRightLeft(const FInputActionValue& Value) {
 void APlayerCharacter::IncrementScore(const int32 PointIncrease)
 {
 	PlayerScore += PointIncrease;
-	GLUTTON_LOG(PRINTF("Score: %d", PlayerScore));
+	//GLUTTON_LOG(PRINTF("Score: %d", PlayerScore));
 }
 
 void APlayerCharacter::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,

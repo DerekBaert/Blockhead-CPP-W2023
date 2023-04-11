@@ -20,7 +20,10 @@ APointPickup::APointPickup()
 void APointPickup::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if(Cube)
+	{
+		Cube->OnComponentBeginOverlap.AddDynamic(this, &APointPickup::OnBeginOverlap);
+	}	
 }
 
 void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
@@ -29,7 +32,8 @@ void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	GLUTTON_LOG("Player overlapped!");
 	if(OtherActor->IsA(APlayerCharacter::StaticClass()))
 	{
-		Cast<APlayerCharacter>(OtherActor)->IncrementScore(Points);
+		Cast<APlayerCharacter>(OtherActor)->IncrementScore(PointValue);
+		Destroy();
 	}
 }
 
@@ -37,6 +41,7 @@ void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 void APointPickup::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 
 }
 

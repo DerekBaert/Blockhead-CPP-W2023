@@ -26,7 +26,7 @@ protected:
 	UStaticMeshComponent* Cube;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Points = 50;
+	int32 PointValue = 50;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UMaterialInstanceDynamic* DynamicMaterial;
