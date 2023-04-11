@@ -107,6 +107,7 @@ void APlayerCharacter::MoveRightLeft(const FInputActionValue& Value) {
 void APlayerCharacter::IncrementScore(const int32 PointIncrease)
 {
 	PlayerScore += PointIncrease;
+	GLUTTON_LOG(PRINTF("Score: %d", PlayerScore));
 }
 
 void APlayerCharacter::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,

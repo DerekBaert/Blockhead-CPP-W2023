@@ -4,6 +4,7 @@
 #include "PointPickup.h"
 
 #include "PlayerCharacter.h"
+#include "BlockHeadCPPW2023/GluttonTools.h"
 
 // Sets default values
 APointPickup::APointPickup()
@@ -25,6 +26,7 @@ void APointPickup::BeginPlay()
 void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	GLUTTON_LOG("Player overlapped!");
 	if(OtherActor->IsA(APlayerCharacter::StaticClass()))
 	{
 		Cast<APlayerCharacter>(OtherActor)->IncrementScore(Points);
