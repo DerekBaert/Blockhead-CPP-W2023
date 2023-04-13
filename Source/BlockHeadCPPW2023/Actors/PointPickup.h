@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "NiagaraComponent.h"
 #include "PointPickup.generated.h"
+
+class UNiagaraComponent;
 
 UCLASS()
 class BLOCKHEADCPPW2023_API APointPickup : public AActor
@@ -23,6 +24,9 @@ protected:
 	UFUNCTION() // The names of these functions don't matter, but the signature does.
 	void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	UFUNCTION()
+	virtual void OnConstruction(const FTransform& Transform) override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Setup)
 	UStaticMeshComponent* Cube;
 
@@ -34,6 +38,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UNiagaraComponent* Niagara;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FLinearColor PickupColor;
+
 
 public:	
 	// Called every frame

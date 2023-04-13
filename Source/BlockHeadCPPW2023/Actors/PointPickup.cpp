@@ -2,7 +2,7 @@
 
 
 #include "PointPickup.h"
-
+#include "NiagaraComponent.h"
 #include "PlayerCharacter.h"
 #include "BlockHeadCPPW2023/GluttonTools.h"
 
@@ -12,6 +12,8 @@ APointPickup::APointPickup()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	Cube = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube"));
+	Niagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Niagara"));
+	Niagara->SetupAttachment(Cube);
 	RootComponent = Cube;
 
 }
@@ -35,6 +37,17 @@ void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 		Cast<APlayerCharacter>(OtherActor)->IncrementScore(PointValue);
 		Destroy();
 	}
+}
+
+void APointPickup::OnConstruction(const FTransform& Transform)
+{
+	if (Niagara)
+	{
+		Niagara->SetColorParameter(TEXT("Color"), PickupColor);
+	}
+
+	DynamicMaterial = Cube->CreateAndSetMaterialInstanceDynamic(0);
+	DynamicMaterial->SetVectorParameterValue(TEXT("Color"), PickupColor);
 }
 
 // Called every frame
