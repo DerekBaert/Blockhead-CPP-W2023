@@ -18,6 +18,10 @@ UCLASS()
 class BLOCKHEADCPPW2023_API APlayerCharacter : public APawn {
 	GENERATED_BODY()
 
+private:
+	UFUNCTION()
+	void IncrementScore(const int32 PointIncrease);
+
 public:
 	// Sets default values for this pawn's properties
 	APlayerCharacter();
@@ -34,8 +38,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	void IncrementScore(const int32 PointIncrease);
 
 protected:
 	// ENHANCED INPUT SYSTEM

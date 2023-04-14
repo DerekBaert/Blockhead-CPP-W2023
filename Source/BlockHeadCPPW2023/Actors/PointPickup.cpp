@@ -32,9 +32,10 @@ void APointPickup::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	GLUTTON_LOG("Player overlapped!");
+	// If overlapped actor is the player, broadcast that this has been picked up.
 	if(OtherActor->IsA(APlayerCharacter::StaticClass()))
 	{
-		Cast<APlayerCharacter>(OtherActor)->IncrementScore(PointValue);
+		PickedUp.Broadcast(PointValue);
 		Destroy();
 	}
 }

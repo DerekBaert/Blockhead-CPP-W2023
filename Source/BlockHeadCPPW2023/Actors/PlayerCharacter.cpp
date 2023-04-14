@@ -7,6 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Obstacle.h"
 #include "EndPoint.h"
+#include "PointPickup.h"
 #include "Kismet/GameplayStatics.h"
 #include "../Game/BlockHeadGameInstance.h"
 #include "../Game/BlockHeadGameMode.h"
@@ -53,6 +54,14 @@ void APlayerCharacter::BeginPlay() {
 		//GLUTTON_LOG("Setting up on component hit event!");
 		Cube->OnComponentHit.AddDynamic(this, &APlayerCharacter::OnHit);
 		Cube->OnComponentBeginOverlap.AddDynamic(this, &APlayerCharacter::OnBeginOverlap);
+	}
+
+	// Get all Pickup actors, then iterate through and subscribe to each pickup actors PickedUp broadcast.
+	TArray<AActor*> Pickups;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APointPickup::StaticClass(), Pickups);
+	for (int i = 0; i < Pickups.Num(); i++)
+	{
+		Cast<APointPickup>(Pickups[i])->PickedUp.AddDynamic(this, &APlayerCharacter::IncrementScore);
 	}
 }
 

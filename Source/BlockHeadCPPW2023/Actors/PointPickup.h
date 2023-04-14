@@ -8,6 +8,8 @@
 
 class UNiagaraComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPickUpSignature, int32, ScoreDelta);
+
 UCLASS()
 class BLOCKHEADCPPW2023_API APointPickup : public AActor
 {
@@ -16,6 +18,9 @@ class BLOCKHEADCPPW2023_API APointPickup : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APointPickup();
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnPickUpSignature PickedUp;
 
 protected:
 	// Called when the game starts or when spawned
